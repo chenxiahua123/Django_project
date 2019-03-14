@@ -65,11 +65,11 @@
         <div class="topnav">
             <div class="topnav-left-1">
                 考拉欢迎您！
-                {% if user %}
+                {% if token %}
                     <span id="user-ifo">
                         <span>{{ user.account }}</span>
                     </span>
-                    <span><a href="#">注销</a></span>
+                    <span><a href="{% url 'app:logout' %}">注销</a></span>
                 {% else %}
                     <span id="user-ifo">
 							<a href="login.html">登录</a>

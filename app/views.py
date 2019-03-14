@@ -29,7 +29,7 @@ def index(request):
         user=User.objects.get(pk=userid)
 
 
-        return render(request, 'index.html', context={'wheels': wheels,'tuijians':tuijians,'user':user})
+        return render(request, 'index.html', context={'wheels': wheels,'tuijians':tuijians,'user':user,'token':token})
     else:
         return render(request,'index.html',context={'wheels': wheels, 'tuijians': tuijians, })
 
@@ -85,4 +85,8 @@ def register(request):
         return redirect('app:index')
 
 
+def logout(request):
 
+    request.session.flush()
+
+    return redirect('app:index')
