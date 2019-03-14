@@ -65,11 +65,18 @@
         <div class="topnav">
             <div class="topnav-left-1">
                 考拉欢迎您！
-                <span id="user-ifo">
+                {% if user %}
+                    <span id="user-ifo">
+                        <span>{{ user.account }}</span>
+                    </span>
+                    <span><a href="#">注销</a></span>
+                {% else %}
+                    <span id="user-ifo">
 							<a href="login.html">登录</a>
 							<span>|</span>
 							<a href="register.html">免费注册</a>
-						</span>
+                    </span>
+                {% endif %}
             </div>
             <div class="topnav-left-2">
                 <div id="tel-img"></div>
@@ -1122,7 +1129,7 @@
 
                 </div>
                 <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
+{#                <div class="swiper-pagination"></div>#}
             </div>
 
 

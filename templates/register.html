@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,10 +6,10 @@
 		<title>网易用户中心</title>
 		<meta name="keywords" content="网易考拉海购,海淘,跨境购,代购,进口,跨境电商,海外直邮"/>
 		<meta name="description" content="网易考拉海购-网易旗下_正品低价_海外直采_海外直邮.网易考拉是国内领先的跨境购物商城，轻松购遍海外进口母婴，进口美食 ，进口美妆、进口电子数码，更多产品正陆续推出。网易考拉海购-安全、放心的跨境购物网站，官方认证，正品保证。"/>
-		<link rel="stylesheet" type="text/css" href="css/register.css"/>
-		<script src="js/jquery-1.12.3.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"/>
+		<script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/register.js' %}" type="text/javascript" charset="utf-8"></script>
 		
 		<style type="text/css">
 			.b-i{height: 72px;width: 24px;}
@@ -27,11 +28,12 @@
 		</div>
 		<div class="mian">
 			<h2 class="mian_h2">注册账号</h2>
-			<form>
+			<form action="{% url 'app:register' %}" method="post">
+                {% csrf_token %}
 				<div class="formWrap">
 					<label for="account" class="labelbox">账号：</label>
-					<input id="account" type="text" placeholder="6-18位字母数字组合" />
-					<select id="mail">
+					<input id="account" type="text" placeholder="6-18位字母数字组合" name="account"/>
+					<select id="mail" name="mail">
 						<option>@163.com</option>
 						<option>@126.com</option>
 						<option>@yeah.net</option>
@@ -50,7 +52,7 @@
 
 				<div class="formWrap">
 					<label for="password" class="labelbox">密码：</label>
-					<input id="password" type="password" placeholder="6-18位密码，区分大小写" />
+					<input id="password" type="password" placeholder="6-18位密码，区分大小写" name="password"/>
 					<table class="popb1">
 						<tbody>
 							<tr>
@@ -80,7 +82,7 @@
 
 				<div class="formWrap" style="position:relative;">
 					<label for="phone" class="labelbox">手机号：</label>
-					<input id="phone" type="text" placeholder="11位手机号" style="display:block" />
+					<input id="phone" type="text" placeholder="11位手机号" style="display:block" name="phone"/>
 					<table class="popb1">
 						<tbody>
 							<tr>
@@ -128,7 +130,7 @@
 
 				<div class="formWrap">
 					<div class="labelbox2">&nbsp;</div>
-					<div id="zhucebox">注&nbsp;册</div>
+					<input type="submit" value="注册">
 				</div>
 
 				<div class="formWrap">

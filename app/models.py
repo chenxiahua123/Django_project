@@ -14,3 +14,12 @@ class Tuijian(models.Model):
 
     class Meta:
         db_table = '网易考拉——推荐'
+
+class User(models.Model):
+    account=models.CharField(max_length=100,unique=True)
+    password=models.CharField(max_length=300)
+    phone=models.CharField(max_length=100)
+
+    class Meta:
+        db_table='网易考拉——注册表'
+
