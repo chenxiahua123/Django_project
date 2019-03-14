@@ -90,3 +90,33 @@ def logout(request):
     request.session.flush()
 
     return redirect('app:index')
+
+
+def login(request):
+
+    if request.method=='GET':
+        return render(request, 'login.html')
+    if request.method=='POST':
+        account=request.POST.get('account')
+        password=generate_password(request.POST.get('password'))
+
+        user=User.objects.filter(account=account).filter(password=password)
+        print(111111)
+
+        if user:
+            print(222222)
+            user=user.first()
+            token=generate_token()
+            request.session['token']=token
+            cache.set(token,user.id)
+
+            return redirect('app:index')
+
+        else:
+            print(333333)
+            return render(request,'login.html',context={'error':'账户密码错误'})
+
+
+
+
+
