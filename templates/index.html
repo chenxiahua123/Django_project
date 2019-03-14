@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>网易考拉海外购</title>
+    <meta name="Keywords" content="网易考拉海购,海淘,跨境购,代购,进口,跨境电商,海外直邮"/>
+    <meta name="Description"
+          content="网易考拉海购-网易旗下_正品低价_海外直采_海外直邮.网易考拉是国内领先的跨境购物商城，轻松购遍海外进口母婴，进口美食 ，进口美妆、进口电子数码，更多产品正陆续推出。网易考拉海购-安全、放心的跨境购物网站，官方认证，正品保证。"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
+    <script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+    {#        <script src="{% static 'js/index_temp.js' %}"></script>#}
+</head>
+<body>
+<div class="header">
+    <div class="header-1">
+        <div class="topnav">
+            <div class="topnav-left-1">
+                考拉欢迎您！
+                <span id="user-ifo">
+							<a href="login.html">登录</a>
+							<span>|</span>
+							<a href="register.html">免费注册</a>
+						</span>
+            </div>
+            <div class="topnav-left-2">
+                <div id="tel-img"></div>
+                <a href="#" id="tel-word">手机考拉海购 </a>
+            </div>
+            <div id="tel-ewmimg">
+                <img src="{% static 'picture/2dcode-app3.jpg' %}" height="116px" width="116px">
+                <p><strong>下载app</strong></p>
+                <p><strong>赢取1000元新人大礼包</strong></p>
+            </div>
+
+            <div class="topnav-right">
+                <ul>
+                    <li>
+                        <a href="#"><span class="qiandao"></span>每日签到</a>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="#">我的订单</a>
+                        <span>|</span>
+                    </li>
+                    <li class="person-home-1">
+                        <a href="#">个人中心</a>
+                        <span>|</span>
+                    </li>
+                    <li class="person-home-2">
+                        <a href="#">客户服务</a>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="#">游戏充值</a>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="#">消费者告知书</a>
+                        <span>|</span>
+                    </li>
+                    <li class="person-home-3">
+                        <a href="#">更多</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="person-home-inner-1">
+                <a href="#">我的优惠卷</a>
+                <a href="#" style="border-bottom:1px solid #EDEDEE;">我的考拉豆</a>
+                <a href="#">账户安全</a>
+                <a href="#" style="border-bottom:1px solid #EDEDEE ;">我的实名认证</a>
+                <a href="#">我收藏的商品</a>
+                <a href="#" style="border-bottom:1px solid #EDEDEE ;">我关注的品牌</a>
+                <a href="#">售后管理</a>
+            </div>
+            <div class="person-home-inner-2">
+                <span class="small-pic-1"></span>
+                <a href="#" style="padding-left:15px">联系客服</a>
+                <span class="small-pic-2"></span>
+                <a href="#" style="padding-left:15px">帮助中心</a>
+            </div>
+            <div class="person-home-inner-3">
+                <a href="#">收藏本站</a>
+                <a href="#" style="border-bottom:1px solid #EDEDEE;">新浪微博</a>
+                <a href="#">账户安全</a>
+                <a href="#" style="border-bottom:1px solid #EDEDEE ;">微信公众号</a>
+                <a href="#">易信公众号</a>
+                <a href="#" style="border-bottom:1px solid #EDEDEE ;">招商合作</a>
+                <a href="#">考拉招聘</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-2">
+        <div class="header-2-inner">
+            <a href="index.html" class="logo">
+                <img src="{% static 'img/logo.jpg' %}">
+            </a>
+            <div class="search">
+                <div class="topsearchbox">
+                    <div class="topsearchbox-1">
+                        <input type="text" placeholder="杜蕾斯"
+                               style="height: 34px;width: 458px;line-height: 24px;float:left;display: block;">
+                    </div>
+                    <div class="topsearchbox-2">
+                        <img src="{% static 'img/search_03.jpg' %}">
+                    </div>
+                </div>
+                <div class="resou">
+                    <ul>
+                        <li><a href="">cpb</a><span>|</span></li>
+                        <li><a href="">科颜氏</a><span>|</span></li>
+                        <li><a href="">雅诗兰黛</a><span>|</span></li>
+                        <li><a href="" style="color: red;">美型月饼</a><span>|</span></li>
+                        <li><a href="">花王</a><span>|</span></li>
+                        <li><a href="">洗发水</a><span>|</span></li>
+                        <li><a href="">潘多拉</a><span>|</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gouwuche">
+                <span id="nav-gouwuche"></span><span style="color: black;font-size: 14px;">购物车</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="nav">
+        <div class="nav-box">
+            <div class="nav-box-left">
+                <div class="nav-box-left-1">
+                    <div class="lineinco">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+                    <span>
+								所有分类
+							</span>
+                </div>
+                <div class="nav-box-left-2">
+                    <ul class="nav-box-left-2-ul">
+                        <li class="nav-box-left-2-li">
+                            <img src="{% static 'picture/navsmallpic1.png' %}" class="smallnavpic">
+                            <span>母婴儿童</span>
+                            <span class="nav-span"></span>
+                        </li>
+                        <li class="nav-box-left-2-li">
+                            <img src="{% static 'picture/navsmallpic2.png' %}" class="smallnavpic">
+                            <span>母婴儿童</span>
+                            <span class="nav-span"></span>
+                        </li>
+                        <li class="nav-box-left-2-li">
+                            <img src="{% static 'picture/navsmallpic3.png' %}" class="smallnavpic">
+                            <span>母婴儿童</span>
+                            <span class="nav-span"></span>
+                        </li>
+                        <li class="nav-box-left-2-li">
+                            <img src="{% static 'picture/navsmallpic4.png' %}" class="smallnavpic">
+                            <span>母婴儿童</span>
+                            <span class="nav-span"></span>
+                        </li>
+                        <li class="nav-box-left-2-li">
+                            <img src="{% static 'picture/navsmallpic5.png' %}" class="smallnavpic">
+                            <span>母婴儿童</span>
+                            <span class="nav-span"></span>
+                        </li>
+                        <li class="nav-box-left-2-li">
+                            <img src="{% static 'picture/navsmallpic6.png' %}" class="smallnavpic">
+                            <span>母婴儿童</span>
+                            <span class="nav-span"></span>
+                        </li>
+                        <li class="nav-box-left-2-li">
+</body>
+</html>
