@@ -8,10 +8,11 @@
     <meta name="description" content="Orien nano H2O肌肤断食水 500毫升:主要提供该产品的报价、产品详情、包装服务、用户评价等."/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/shop.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.spinner.css' %}"/>
-    <script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
-    <script src="{% static 'js/shop.js' %}" type="text/javascript" charset="utf-8"></script>
-    <script src="{% static 'js/index_temp.js' %}"></script>
+    {#    <script src="{% static 'js/shop.js' %}" type="text/javascript" charset="utf-8"></script>#}
+    <script src="{% static 'js/shop2.js' %}" type="text/javascript" charset="utf-8"></script>
+
     <style type="text/css">
         .bigarea {
             width: 400px;
@@ -116,11 +117,19 @@
         <div class="topnav">
             <div class="topnav-left-1">
                 考拉欢迎您！
-                <span id="user-ifo">
-							<a href="login.html">登录</a>
-							<span>|</span>
-							<a href="register.html">免费注册</a>
+                {% if userid %}
+                    <span id="user-ifo">
+							<span>{{ user.account }}</span>
+                            <a href="{% url 'app:logout' %}">注销</a>
 						</span>
+                {% else %}
+                    <span id="user-ifo">
+							<a href="{% url 'app:login' %}">登录</a>
+							<span>|</span>
+							<a href="{% url 'app:register' %}">免费注册</a>
+						</span>
+                {% endif %}
+
             </div>
             <div class="topnav-left-2">
                 <div id="tel-img"></div>
@@ -1234,8 +1243,8 @@
                     <span class="ctrnum_wrap">
 								<a class="raduce">-</a>
 								<input type="text" value="1" class="ctrnum">
-								<a class="add">+</a>
-							</span>
+								<a class="add"><button goodsid="{{ goods.id }}">+</button></a>
+							网易考拉——推荐</span>
                     <span>库存充足</span>
                 </div>
                 <div class="buybtns">

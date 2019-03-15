@@ -1,5 +1,6 @@
 
-$(function(){
+$(document).ready(function(){
+	console.log(99999999999999999999999999999)
 	//获取cookie
 	var cookies=$.cookie("cart");
 	cookies=JSON.parse(cookies);
@@ -169,61 +170,15 @@ $(function(){
 		}else if (a>10) {
 			a=10;
 		};
-		$(".ctrnum").prop("value",a);
+		$(".ctrnum_wrap .ctrnum").prop("value",a);
 	})
 	//立即购买
-	$(".buybtn").click(function(){
-		var goodspic = $(".showimgbox img").attr("src");
-		var goods_cart_List = $.cookie("goods_cart") ? JSON.parse($.cookie("goods_cart")) : [];
-		var isExist = false;
-		for (var i=0; i<goods_cart_List.length; i++) {
-			var cartGoodspic = goods_cart_List[i].picture; //购物车中商品id
-			if (goodspic == cartGoodspic) {
-				//存在相同的商品, 则把num++
-				goods_cart_List[i].num=Number(goods_cart_List[i].num)+Number($(".ctrnum").prop("value"));
-				isExist = true; //表示存在
-			}
-		}
-		if (!isExist) {
-			//对象:一个商品
-			var goods = {
-				lastprice: $(".market_price").html(),
-				price: $(".current_price").html(),
-				picture:goodspic,
-				name:$(".product_title").html(),
-				num:$(".ctrnum").prop("value"),
-			}
-			goods_cart_List.push(goods);
-		}
-		$.cookie("goods_cart", JSON.stringify(goods_cart_List), {expires:7, path:"/"});
-		console.log($.cookie("goods_cart"));
-	})
+
 	
 	//添加购物车
-	$(".addcart").click(function(){
-		var goodspic = $(".showimgbox img").attr("src");
-		var goods_cart_List = $.cookie("goods_cart") ? JSON.parse($.cookie("goods_cart")) : [];
-		var isExist = false;
-		for (var i=0; i<goods_cart_List.length; i++) {
-			var cartGoodspic = goods_cart_List[i].picture; //购物车中商品id
-			if (goodspic == cartGoodspic) {
-				//存在相同的商品, 则把num++
-				goods_cart_List[i].num=Number(goods_cart_List[i].num)+Number($(".ctrnum").prop("value"));
-				isExist = true; //表示存在
-			}
-		}
-		if (!isExist) {
-			//对象:一个商品
-			var goods = {
-				lastprice: $(".market_price").html(),
-				price: $(".current_price").html(),
-				picture:goodspic,
-				name:$(".product_title").html(),
-				num:$(".ctrnum").prop("value"),
-			}
-			goods_cart_List.push(goods);
-		}
-		$.cookie("goods_cart", JSON.stringify(goods_cart_List), {expires:7, path:"/"});
-		console.log($.cookie("goods_cart"));
-	})
+
+
+
+
+
 })

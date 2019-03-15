@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from app.models import Wheel, Tuijian, User, Goods
+from app.models import Wheel, Tuijian, User, Goods, Cart
 
 
 def index(request):
@@ -137,14 +137,78 @@ def detail(request):
 
 
 def shop(request,id=1):
-    print(id)
-    print(type(id))
-    id=int(id)-1
-    goods=Goods.objects.all()
-    goods=goods[id]
+    token=request.session.get('token')
+    userid=cache.get(token)
 
-    data={
-        'goods':goods,
-    }
+    if userid:
 
-    return render(request,'shop.html',context=data)
+        user=User.objects.get(pk=userid)
+
+        print(id)
+        print(type(id))
+        id=int(id)-1
+        goods=Goods.objects.all()
+        goods=goods[id]
+
+        data={
+            'goods':goods,
+            'userid':userid,
+            'user':user
+        }
+
+        return render(request,'shop.html',context=data)
+
+    else:
+        id = int(id) - 1
+        goods = Goods.objects.all()
+        goods = goods[id]
+
+        data = {
+            'goods': goods,
+            'userid': userid,
+        }
+        return render(request, 'shop.html', context=data)
+
+
+def addcart(request):
+
+    token=request.session.get('token')
+
+    userid=cache.get(token)
+
+    goodsid=request.GET.get('goodsid')
+
+    print(userid)
+    print(goodsid)
+
+    if userid:
+        print(1111111111)
+        user=User.objects.get(pk=userid)
+        print(222222)
+        goods=Goods.objects.get(pk=goodsid)
+        print(33333)
+        cart=Cart.objects.filter(user=user).filter(goods=goods)
+        print(44444)
+        if cart.exists():
+            print(55555)
+            cart=cart.first()
+            cart.number=cart.number+1
+            cart.save()
+            print(cart.goods.name)
+            return JsonResponse({'msg': '{}-添加成功,数量为-{}'.format(cart.goods.name,cart.number), 'number': cart.number,'status':1})
+
+        else:
+            print(6666)
+            cart=Cart()
+            cart.user=user
+            cart.goods=goods
+            cart.number=1
+
+            cart.save()
+            return JsonResponse({'msg': '{}-添加成功,数量为-{}'.format(cart.goods.name, cart.number), 'number': cart.number,'status':1})
+
+
+    else:
+        return JsonResponse({'msg': '请先登录，后操作','status':0})
+
+

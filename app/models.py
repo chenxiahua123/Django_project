@@ -32,3 +32,17 @@ class Goods(models.Model):
     class Meta:
         db_table='网易考拉——商品'
 
+class Cart(models.Model):
+    user=models.ForeignKey(User)
+
+    goods=models.ForeignKey(Goods)
+
+    number=models.IntegerField(default=0)
+
+    isselect=models.BooleanField(default=True)
+
+    isdelete=models.BooleanField(default=False)
+
+    class Meta:
+        db_table='网易考拉——购物车'
+

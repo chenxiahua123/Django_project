@@ -16,4 +16,7 @@ urlpatterns=[
     url(r'^detail/$',views.detail,name='detail'),
 
     url(r'^shop/(?P<id>\d+)/$',views.shop,name='shop'),
+
+    url(r'^addcart/$',views.addcart,name='addcart'),
+
 ]

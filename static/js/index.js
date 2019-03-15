@@ -209,9 +209,7 @@ $(function () {
     })
 
     // 商品列表单击
-    $('#a_index img').click(function () {
-        console.log('商品列表单击成功')
-    })
+
 
 
 
