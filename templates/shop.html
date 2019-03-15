@@ -1150,7 +1150,7 @@
                 </ul>
             </div>
             <div class="showimgbox">
-                <b></b>
+                <img src="/static/{{ goods.img }}">
             </div>
             <div class="bigarea"></div>
         </div>
@@ -1168,6 +1168,7 @@
             </dt>
             <dt class="product_title"></dt>
             <dt class="subtit">
+                <span>{{ goods.name }}</span>
                 【此款产品尺码标准为美码，比正常尺码偏大】Tommy Hilfiger诠释经典美式风格，简洁圆领短袖T恤，简约线条设计其实更能体现设计水平。
             </dt>
             <dd class="m_price_wrap">
@@ -1181,7 +1182,7 @@
                 </div>
                 <div class="promot_title">
                     <div class="m_zd_prt">
-                        <span class="m_price_title">促销</span>
+                        <span class="m_price_title">促销：{{ goods.price }}</span>
                         <span class="prt_title">N元任选</span>
                         <span class="prt_desc">159任选2件，209任选3件</span>
                     </div>

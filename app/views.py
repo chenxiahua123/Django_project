@@ -13,7 +13,7 @@ from app.models import Wheel, Tuijian, User, Goods
 
 def index(request):
 
-    goods=Goods.objects.all()[0:4]
+    goods=Goods.objects.all()[1:5]
     wheels=Wheel.objects.all()
     tuijians=Tuijian.objects.all()
     token=request.session.get('token')
@@ -137,4 +137,14 @@ def detail(request):
 
 
 def shop(request,id=1):
-    return render(request,'shop.html')
+    print(id)
+    print(type(id))
+    id=int(id)-1
+    goods=Goods.objects.all()
+    goods=goods[id]
+
+    data={
+        'goods':goods,
+    }
+
+    return render(request,'shop.html',context=data)

@@ -167,9 +167,9 @@ $(function () {
 
     $(window).scroll(function () {
         var _top = $(".footer").offset().top - 500;
-        console.log(_top);
+        // console.log(_top);
         var _scrolltop = $(document).scrollTop();
-        console.log(_scrolltop);
+        // console.log(_scrolltop);
         if (_scrolltop > 575) {
             $(".right-nav").css("display", "block");
         } else {
@@ -207,5 +207,12 @@ $(function () {
         $.cookie("cookie1", "", {expires: -1, path: "/"});
         window.location.href = "index.html"
     })
+
+    // 商品列表单击
+    $('#a_index img').click(function () {
+        console.log('商品列表单击成功')
+    })
+
+
 
 })
