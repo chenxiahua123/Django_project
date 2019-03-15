@@ -1124,7 +1124,7 @@
                     <li>
                         <a>
                             <div class="rcm_goods">
-                                <a href=""><img src="/static/{{ good.img }}"></a>
+                                <a  href="{% url 'app:shop' good.id%}"><img src="/static/{{ good.img }}"></a>
                                 <div class="rcm_goods_p">{{ good.name }}</div>
                                 <div class="iteminfo">
                                     <p class="price">{{ good.price }}</p>

@@ -136,5 +136,5 @@ def detail(request):
     return render(request,'detail.html')
 
 
-def shop(request):
+def shop(request,id=1):
     return render(request,'shop.html')
