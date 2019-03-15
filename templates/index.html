@@ -21,6 +21,7 @@
             margin: 0;
             padding: 0;
         }
+
         .banner .swiper-container {
             width: 100%;
             height: 100%;
@@ -48,7 +49,6 @@
         }
 
 
-
     </style>
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/swiper.min.css' %}">
@@ -72,9 +72,9 @@
                     <span><a href="{% url 'app:logout' %}">注销</a></span>
                 {% else %}
                     <span id="user-ifo">
-							<a href="login.html">登录</a>
+							<a href="{% url 'app:login' %}">登录</a>
 							<span>|</span>
-							<a href="register.html">免费注册</a>
+							<a href="{% url 'app:register' %}">免费注册</a>
                     </span>
                 {% endif %}
             </div>
@@ -1119,29 +1119,30 @@
             </a>
         </div>
         <div class="tuijian">
-           <!-- Swiper -->
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    {% for tuijian in tuijians %}
-                         <div class="swiper-slide"><img src="/static/{{ tuijian.img }}"></div>
-                    {% endfor %}
+            <ul>
+                {% for good in goods %}
+                    <li>
+                        <a>
+                            <div class="rcm_goods">
+                                <a href=""><img src="/static/{{ good.img }}"></a>
+                                <div class="rcm_goods_p">{{ good.name }}</div>
+                                <div class="iteminfo">
+                                    <p class="price">{{ good.price }}</p>
+                                    <a href="">69人已评价</a>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
 
-
-                </div>
-                <!-- Add Pagination -->
-{#                <div class="swiper-pagination"></div>#}
-            </div>
-
+            </ul>
 
         </div>
     </div>
 
 
     <div class="goods-show">
-        <div class="goods-title">
-            <span class="goods-title-1">母婴儿童</span>
-            <span class="goods-title-2">——————宝宝的营养师，服装设计师——————</span>
-        </div>
+
         <div class="goods-banner"><a href="detail.html"><img src="{% static 'img/goodsbanner-1.jpg' %}"></a></div>
         <div class="goods-nav">
             <div class="goods1-nav-list">纸尿裤</div>

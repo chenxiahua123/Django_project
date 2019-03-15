@@ -23,3 +23,12 @@ class User(models.Model):
     class Meta:
         db_table='网易考拉——注册表'
 
+class Goods(models.Model):
+    name=models.CharField(max_length=100)
+    price=models.FloatField()
+    img=models.CharField(max_length=100)
+    store_num=models.IntegerField(default=20)
+
+    class Meta:
+        db_table='网易考拉——商品'
+

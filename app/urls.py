@@ -11,4 +11,9 @@ urlpatterns=[
 
     url(r'^login/$',views.login,name='login'),
 
+    url(r'^account_check/$',views.account_check,name='account_check'),
+
+    url(r'^detail/$',views.detail,name='detail'),
+
+    url(r'^shop/$',views.shop,name='shop'),
 ]

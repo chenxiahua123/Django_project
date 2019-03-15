@@ -4,20 +4,16 @@ from datetime import time
 
 
 from django.core.cache import cache
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from app.models import Wheel, Tuijian, User
+from app.models import Wheel, Tuijian, User, Goods
 
 
 def index(request):
 
-    for i in range(1,8):
-        tuijians=Tuijian()
-        tuijians.name='banner='+str(i)+'.jpg'
-        tuijians.img='picture/'+tuijians.name
-        tuijians.save()
-
+    goods=Goods.objects.all()[0:4]
     wheels=Wheel.objects.all()
     tuijians=Tuijian.objects.all()
     token=request.session.get('token')
@@ -29,9 +25,9 @@ def index(request):
         user=User.objects.get(pk=userid)
 
 
-        return render(request, 'index.html', context={'wheels': wheels,'tuijians':tuijians,'user':user,'token':token})
+        return render(request, 'index.html', context={'wheels': wheels,'tuijians':tuijians,'user':user,'token':token,'goods':goods})
     else:
-        return render(request,'index.html',context={'wheels': wheels, 'tuijians': tuijians, })
+        return render(request,'index.html',context={'wheels': wheels, 'tuijians': tuijians,'goods':goods })
 
 
 
@@ -71,6 +67,7 @@ def register(request):
         account_name=request.POST.get('account')
         account_mail=request.POST.get('mail')
         user.account=account_name+account_mail
+
         user.password=generate_password(request.POST.get('password'))
         user.phone=request.POST.get('phone')
 
@@ -117,6 +114,27 @@ def login(request):
             return render(request,'login.html',context={'error':'账户密码错误'})
 
 
+def account_check(request):
+    print('pppppppppppppppp')
+    account=request.GET.get('account')
+    mail=request.GET.get('mail')
+    print(account,mail)
+    new_account=account+mail
+    print(6666)
+    user=User.objects.filter(account=new_account)
+    print(11111111111111111)
+
+    if user:
+        print(222222222222)
+        return JsonResponse({'msg': '账户存在','status':0})
+    else:
+        print(33333333333333333)
+        return JsonResponse({'msg': '账户可使用','status':1})
 
 
+def detail(request):
+    return render(request,'detail.html')
 
+
+def shop(request):
+    return render(request,'shop.html')
