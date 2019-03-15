@@ -36,3 +36,9 @@ img{border: none;}
 .small-pic-2{background: url(../img/icon1_8.png)no-repeat 0 -324px;height: 14px;width: 20px;position: absolute;top: 35px;left: 0px;}
 .header-2-inner{height: 100px;width: 1090px;margin: 0 auto;position: relative;}
 .logo{position: absolute;top:24px;left: 0;}
+
+.warename{position: relative;left: 8%}
+.price{position: relative;left: 30%}
+.number{position: relative;left: 38%}
+.total_1{position: relative;left: 49%}
+#cross{position: relative;left: 54%;color: red}

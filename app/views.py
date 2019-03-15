@@ -273,4 +273,5 @@ def add_cart(request):
         return JsonResponse({'msg': '请先登录，后操作', 'status': 0})
 
 
-
+def cart(request):
+    return render(request,'cart.html')

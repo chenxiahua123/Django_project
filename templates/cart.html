@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,10 +9,11 @@
 	    <meta name="keywords" content="跨境,海淘,进口,母婴用品,美妆个护,美食保健,美妆个护,海淘,商城"/>
 	    <meta name="description" content="网易考拉海购-安全、放心的跨境海淘网站，官方认证，正品保证。轻松购遍海外进口母婴，进口美食 ，进口美妆、进口电子数码，更多产品正陆续推出。"/>
     <meta name="renderer" content="webkit">
-		<script src="js/jquery-1.12.3.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/cart.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" type="text/css" href="css/cart.css"/>
+		<script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/cart.js' %}" type="text/javascript" charset="utf-8"></script>
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}"/>
 		<style type="text/css">
 			.bg{position: absolute;right: 38px;top: 40px;width: 290px;height: 20px;background: url(img/steps.png)no-repeat;}
 			
@@ -80,7 +82,7 @@
 						<a href="#" id="tel-word">手机考拉海购 </a>
 					</div>
 					<div id="tel-ewmimg">
-						<img src="picture/2dcode-app3.jpg" height="116px"width="116px"/>
+						<img src="{% static 'picture/2dcode-app3.jpg' %}" height="116px"width="116px"/>
 						<p><strong>下载app</strong></p>
 						<p><strong>赢取1000元新人大礼包</strong></p>
 					</div>
@@ -145,7 +147,7 @@
 			<div class="header-2">
 				<div class="header-2-inner">
 					<a href="index.html" class="logo">
-						<img src="img/logo.jpg"/>
+						<img src="{% static 'img/logo.jpg' %}"/>
 					</a>
 					<span class="bg"></span>
 				</div>	
@@ -167,8 +169,17 @@
 					</div>
 					<div class="m_cart">
 						<div class="ware">
-							<input type="checkbox" name="cartall" class="u_chk" />
-							<strong class="warename">自营美国1号仓发货</strong>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" name="cartall" class="u_chk" />
+							        <span class="warename">自营美国1号仓发货</span>
+                                    <span class="price">$100</span>
+                                    <span class="number">10</span>
+                                    <span class="total_1">1000</span>
+                                    <span class="glyphicon glyphicon-remove" id="cross"></span>
+                                </li>
+                            </ul>
+
 						</div>
 						<div class="goods">
 							<ul class="m_goods"></ul>
