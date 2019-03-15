@@ -178,35 +178,29 @@ def addcart(request):
 
     goodsid=request.GET.get('goodsid')
 
+    number = int(request.GET.get('number'))
+
     print(userid)
     print(goodsid)
 
     if userid:
-        print(1111111111)
-        user=User.objects.get(pk=userid)
-        print(222222)
+        # print(1111111111)
+        # user=User.objects.get(pk=userid)
+        # print(222222)
         goods=Goods.objects.get(pk=goodsid)
-        print(33333)
-        cart=Cart.objects.filter(user=user).filter(goods=goods)
-        print(44444)
-        if cart.exists():
-            print(55555)
-            cart=cart.first()
-            cart.number=cart.number+1
-            cart.save()
-            print(cart.goods.name)
-            return JsonResponse({'msg': '{}-添加成功,数量为-{}'.format(cart.goods.name,cart.number), 'number': cart.number,'status':1})
+        # print(33333)
+        # cart=Cart.objects.filter(user=user).filter(goods=goods)
+        # print(44444)
+        # if cart.exists():
+        #     print(55555)
+        #     cart=cart.first()
+        #     cart.number=cart.number+1
+        #     cart.save()
+        #     print(cart.goods.name)
 
-        else:
-            print(6666)
-            cart=Cart()
-            cart.user=user
-            cart.goods=goods
-            cart.number=1
+        number+=1
 
-            cart.save()
-            return JsonResponse({'msg': '{}-添加成功,数量为-{}'.format(cart.goods.name, cart.number), 'number': cart.number,'status':1})
-
+        return JsonResponse({'msg': '{}-添加成功,数量为-{}'.format(goods.name,number), 'number':number,'status':1})
 
     else:
         return JsonResponse({'msg': '请先登录，后操作','status':0})
@@ -224,19 +218,59 @@ def minuscart(request):
         user=User.objects.get(pk=userid)
         goods=Goods.objects.get(pk=goodsid)
 
-        cart=Cart.objects.filter(user=user).filter(goods=goods)
+        number = int(request.GET.get('number'))
 
-        cart=cart.first()
-        cart.number=cart.number-1
-        cart.save()
+        if number==0:
+            pass
+        else:
+            number-=1
 
-        print(cart.goods.name,cart.number)
+        # cart=Cart.objects.filter(user=user).filter(goods=goods)
+        #
+        # cart=cart.first()
+        # cart.number=cart.number-1
+        # cart.save()
 
-        return JsonResponse({'msg': '{}-减操作连接成功,数量为-{}'.format(cart.goods.name,cart.number), 'status': 1,'number':cart.number})
+
+
+        return JsonResponse({'msg': '{}-减操作连接成功,数量为-{}'.format(goods.name,number), 'status': 1,'number':number})
     else:
         return JsonResponse({'msg': '减操作连接成功','status':0})
 
 
+def add_cart(request):
+
+    token=request.session.get('token')
+    userid=cache.get(token)
+
+    goodsid=request.GET.get('goodsid')
+
+    number = int(request.GET.get('number'))
+    print(number)
+
+    if userid:
+
+        user=User.objects.get(pk=userid)
+
+        goods=Goods.objects.get(pk=goodsid)
+
+        cart=Cart.objects.filter(user=user).filter(goods=goods)
+
+        if cart.exists():
+            cart=cart.first()
+            cart.number=cart.number+number
+
+            cart.save()
+        else:
+            cart=Cart()
+            cart.user=user
+            cart.goods=goods
+            cart.number=number
+            cart.save()
+
+        return JsonResponse({'msg': '{}-添加购物车成功,数量为-{}'.format(cart.goods.name,cart.number), 'status': 1})
+    else:
+        return JsonResponse({'msg': '请先登录，后操作', 'status': 0})
 
 
 
