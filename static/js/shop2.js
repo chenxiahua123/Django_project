@@ -25,4 +25,35 @@ $(document).ready(function () {
 
         })
     })
+
+    $('.raduce button').click(function () {
+
+        var goodsid=$(this).attr('goodsid')
+
+        console.log(goodsid)
+
+        var $that=$(this)
+
+        data={
+            'goodsid':goodsid,
+        }
+
+        $.get('/minuscart',data,function (response) {
+
+
+            if (response.status==0){
+                window.open('/login',target='_self')
+            }else if (response.status==1){
+               $that.parent().next().val(response.number)
+                if (response.number<=0){
+                   $that.parent().next().val(1)
+                }
+            }
+
+        })
+
+    })
+
+
+
 })

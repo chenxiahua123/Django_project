@@ -212,3 +212,31 @@ def addcart(request):
         return JsonResponse({'msg': '请先登录，后操作','status':0})
 
 
+def minuscart(request):
+    token=request.session.get('token')
+    userid=cache.get(token)
+    goodsid=request.GET.get('goodsid')
+
+    print(userid,goodsid)
+
+
+    if userid:
+        user=User.objects.get(pk=userid)
+        goods=Goods.objects.get(pk=goodsid)
+
+        cart=Cart.objects.filter(user=user).filter(goods=goods)
+
+        cart=cart.first()
+        cart.number=cart.number-1
+        cart.save()
+
+        print(cart.goods.name,cart.number)
+
+        return JsonResponse({'msg': '{}-减操作连接成功,数量为-{}'.format(cart.goods.name,cart.number), 'status': 1,'number':cart.number})
+    else:
+        return JsonResponse({'msg': '减操作连接成功','status':0})
+
+
+
+
+

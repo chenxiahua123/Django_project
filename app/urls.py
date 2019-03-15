@@ -19,4 +19,5 @@ urlpatterns=[
 
     url(r'^addcart/$',views.addcart,name='addcart'),
 
+    url(r'^minuscart/$',views.minuscart,name='minuscart'),
 ]
