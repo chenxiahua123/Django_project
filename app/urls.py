@@ -24,4 +24,6 @@ urlpatterns=[
     url(r'^add_cart/$',views.add_cart,name='add_cart'),
 
     url(r'^cart/$',views.cart,name='cart'),
+
+    url(r'^deletecart/$',views.deletecart,name='deletecart'),
 ]

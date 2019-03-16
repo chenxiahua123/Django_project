@@ -1,22 +1,46 @@
-$(function(){
+$(function () {
     console.log(111111)
-    var sum=0
-    $('.ware ul li').each(function () {
-        console.log(222222)
-		var price=$(this).find('.price').html()
-		var number=$(this).find('.number').html()
 
+    sum()
 
-        var total_1=price*number
+    $('li #cross').click(function () {
+        console.log('单击删除成功')
 
-		console.log(price)
-		console.log(number)
-        console.log(total_1)
-        var total_part=$(this).find('.total_1').html(total_1)
-        sum+=total_1
+        cartid = $(this).attr('cartid')
+
+        console.log(cartid)
+
+        var $that = $(this)
+
+        data = {
+            'cartid': cartid,
+        }
+
+        $.get('/deletecart', data, function (response) {
+            console.log(response)
+            $that.parent().remove()
+            var total = $('.allsum span strong').html(sum)
+        })
+        sum()
     })
-    console.log(sum)
 
-    var total=$('.allsum span strong').html(sum)
+    function sum() {
+        var sum = 0
+        $('.ware ul li').each(function () {
+            console.log(222222)
+            var price = $(this).find('.price').html()
+            var number = $(this).find('.number').html()
+
+
+            var total_1 = price * number
+
+            console.log(price)
+            console.log(number)
+            console.log(total_1)
+            var total_part = $(this).find('.total_1').html(total_1)
+            sum += total_1
+        })
+        var total = $('.allsum span strong').html(sum)
+    }
 
 })

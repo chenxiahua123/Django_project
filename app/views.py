@@ -299,3 +299,17 @@ def cart(request):
         return redirect('app:login')
 
 
+def deletecart(request):
+
+    token=request.session.get('token')
+
+    userid=cache.get(token)
+
+    cartid=request.GET.get('cartid')
+
+    cart=Cart.objects.get(pk=cartid)
+
+    cart.delete()
+
+
+    return JsonResponse({'msg':'{}-删除成功'.format(cart.goods.name)})

@@ -440,7 +440,7 @@
                                 <span class="price">{{ cart.goods.price }}</span>
                                 <span class="number">{{ cart.number }}</span>
                                 <span class="total_1">1000</span>
-                                <span class="glyphicon glyphicon-remove" id="cross"></span>
+                                <span class="glyphicon glyphicon-remove" id="cross" cartid="{{ cart.id }}"></span>
                             </li>
                         {% endfor %}
                     </ul>
