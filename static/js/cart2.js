@@ -43,4 +43,24 @@ $(function () {
         var total = $('.allsum span strong').html(sum)
     }
 
+    // 单击勾选
+    $('.ware ul li input').click(function () {
+        console.log('勾选成功')
+
+        var cartid=$(this).attr('cartid')
+
+        console.log(cartid)
+
+        data={
+            'cartid':cartid,
+        }
+
+        $.get('/changestatus',data,function (response) {
+            console.log(response)
+        })
+    })
+
+
+
+
 })

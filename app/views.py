@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from app.models import Wheel, Tuijian, User, Goods, Cart
+from app.models import Wheel, Tuijian, User, Goods, Cart, Order, OrderGoods
 
 
 def index(request):
@@ -313,3 +313,61 @@ def deletecart(request):
 
 
     return JsonResponse({'msg':'{}-删除成功'.format(cart.goods.name)})
+
+
+def changestatus(request):
+
+    cartid=request.GET.get('cartid')
+
+    cart=Cart.objects.get(pk=cartid)
+
+    print(cart.isselect)
+
+    cart.isselect=not cart.isselect
+
+    cart.save()
+
+    print(cart.isselect)
+
+    return JsonResponse({'msg':'更改状态成功','isselect':cart.isselect})
+
+
+def generate_identifier():
+
+    temp=str(random.randrange(10000,100000))+str(random.randrange(10000,100000))
+    return temp
+
+
+def generateorder(request):
+
+    token=request.session.get('token')
+    userid=cache.get(token)
+
+    user=User.objects.get(pk=userid)
+
+    # 筛选出勾选的购物车
+    carts=user.cart_set.filter(isselect=0)
+
+    # 订单创建
+    order=Order()
+    order.user=user
+    order.identifier=generate_identifier()
+    order.save()
+
+    for cart in carts:
+        global orderGoods
+        orderGoods=OrderGoods()
+        orderGoods.goods=cart.goods
+        orderGoods.order=order
+        orderGoods.number=cart.number
+        cart.delete()
+        orderGoods.save()
+
+
+
+    data={
+        'orders':order,
+        'orderGoods':orderGoods,
+    }
+
+    return render(request,'orderdetial.html',context=data)

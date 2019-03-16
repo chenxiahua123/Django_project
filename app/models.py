@@ -46,3 +46,27 @@ class Cart(models.Model):
     class Meta:
         db_table='网易考拉——购物车'
 
+class Order(models.Model):
+    user=models.ForeignKey(User)
+
+    status=models.IntegerField(default=0)
+
+    creat_time=models.DateTimeField(auto_now_add=True)
+
+    update_time=models.DateTimeField(auto_now=True)
+
+    identifier=models.CharField(max_length=300)
+
+    class Meta:
+        db_table='网易考拉——订单'
+
+class OrderGoods(models.Model):
+    order=models.ForeignKey(Order)
+
+    goods=models.ForeignKey(Goods)
+
+    number=models.IntegerField(default=0)
+
+    class Meta:
+        db_table='网易考拉——订单商品'
+

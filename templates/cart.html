@@ -435,7 +435,7 @@
                     <ul>
                         {% for cart in carts %}
                             <li>
-                                <input type="checkbox" name="cartall" class="u_chk"/>
+                                <input type="checkbox" name="cartall" cartid="{{ cart.id }}" isselect="{{ cart.isselect }}"/>
                                 <span class="warename">{{ cart.goods.name }}</span>
                                 <span class="price">{{ cart.goods.price }}</span>
                                 <span class="number">{{ cart.number }}</span>
@@ -464,7 +464,7 @@
             </div>
             <div class="totalbox">
                 <div class="gobuy">
-                    去结算
+                    <a href="{% url 'app:generateorder' %}">去结算</a>
                 </div>
             </div>
         </div>
