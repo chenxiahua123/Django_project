@@ -274,4 +274,28 @@ def add_cart(request):
 
 
 def cart(request):
-    return render(request,'cart.html')
+
+    token=request.session.get('token')
+    userid=cache.get(token)
+
+    if userid:
+
+        user=User.objects.get(pk=userid)
+
+        carts=user.cart_set.all()
+
+        print(cart)
+
+        data={
+            'carts':carts,
+            'token':token,
+            'user':user,
+        }
+
+        return render(request,'cart.html',context=data)
+
+
+    else:
+        return redirect('app:login')
+
+
