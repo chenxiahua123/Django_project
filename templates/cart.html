@@ -421,7 +421,7 @@
         <div class="m_cart_box">
             <div class="head">
                 <div class="col1">
-                    <input type="checkbox" name="selectall" class="u_chk"/>
+                    <input type="checkbox" name="selectall" class="u_chk" isall="{{ isall }}"/>
                     <label for="selectall">全选</label>
                 </div>
                 <div class="col2">商品信息</div>
@@ -436,7 +436,7 @@
                         {% for cart in carts %}
                             <li>
                                 <input type="checkbox" name="cartall" cartid="{{ cart.id }}" isselect="{{ cart.isselect }}"/>
-                                <span class="warename">{{ cart.goods.name }}</span>
+                                <span class="warename"><img src="/static/{{ cart.goods.img }}" style="width: 15%;height: 15%"></span>
                                 <span class="price">{{ cart.goods.price }}</span>
                                 <span class="number">{{ cart.number }}</span>
                                 <span class="total_1">1000</span>

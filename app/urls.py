@@ -30,4 +30,10 @@ urlpatterns=[
     url(r'^changestatus/$',views.changestatus,name='changestatus'),
 
     url(r'^generateorder/$',views.generateorder,name='generateorder'),
+
+    url(r'^changeall/$',views.changeall,name='changeall'),
+
+    url(r'^buy_immediatly/$',views.buy_immediatly,name='buy_immediatly'),
+
+    url(r'^generateorder2/$',views.generateorder2,name='generateorder2'),
 ]

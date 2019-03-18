@@ -47,20 +47,64 @@ $(function () {
     $('.ware ul li input').click(function () {
         console.log('勾选成功')
 
-        var cartid=$(this).attr('cartid')
+        var cartid = $(this).attr('cartid')
 
         console.log(cartid)
 
-        data={
-            'cartid':cartid,
+        data = {
+            'cartid': cartid,
         }
 
-        $.get('/changestatus',data,function (response) {
+        $.get('/changestatus', data, function (response) {
             console.log(response)
         })
     })
 
+    // 全选，全部取消
+    $('.col1 .u_chk').click(function () {
+        console.log('单击全选成功')
+
+        var isall = $(this).attr('isall')
+
+        console.log(isall)
+
+        if (isall == 'True') {
+            isall = false
+        } else if (isall == 'False') {
+            isall = true
+        }
+
+        var $that = $(this)
 
 
+        console.log(isall)
+
+        data = {
+            'isall': isall,
+        }
+
+        $.get('/changeall', data, function (response) {
+            console.log(response)
+
+            if (response.status == 1) {
+                console.log('yyyyyy')
+                $that.attr('isall', response.isall)
+
+                $('.ware ul li input').each(function () {
+                    $(this).prop("checked", true);
+                })
+            } else if (response.status == 0) {
+                console.log('ttttttttttt')
+                $that.attr('isall', response.isall)
+
+                $('.ware ul li input').each(function () {
+                    $(this).prop("checked", false);
+                })
+            }
+
+        })
+
+
+    })
 
 })
