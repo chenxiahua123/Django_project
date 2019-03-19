@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +13,12 @@
             <span>订单商品数量：{{ orderGood.number }}</span>
             <br>
         {% endfor %}
-
+        <button id="alipay" data-orderid="{{ orders.id }}">支付</button>
 
 
     </div>
-
-
+    <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
+    <script src="{% static 'js/orderdetail.js' %}"></script>
 
 </body>
 </html>

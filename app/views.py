@@ -1,16 +1,35 @@
 import hashlib
 import random
 from datetime import time
+from urllib.parse import parse_qs
 
 from django.core.cache import cache
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+
+from app.alipay import alipay
 from app.models import Wheel, Tuijian, User, Goods, Cart, Order, OrderGoods
 
 
 def index(request):
+
+    for i in range(1,8):
+        wheels=Wheel()
+        wheels.name='goodsbanner-'+str(i)+'.jpg'
+        wheels.img='img/'+wheels.name
+        wheels.save()
+
+        goods=Goods()
+        goods.name='goodsbanner-'+str(i)+'.jpg'
+        goods.img='img/'+goods.name
+        goods.price=100*i
+        goods.store_num=10*i
+        goods.save()
+
+
     goods = Goods.objects.all()[1:5]
     wheels = Wheel.objects.all()
     tuijians = Tuijian.objects.all()
@@ -373,13 +392,18 @@ def buy_immediatly(request):
     token = request.session.get('token')
     userid = cache.get(token)
 
+    print(11111111111)
+
     goodsid = request.GET.get('goodsid')
+    print(goodsid)
+    print(2222222222222)
     number = request.GET.get('number')
+    print(33333333333)
 
     user = User.objects.get(pk=userid)
-
+    print(444444)
     goods = Goods.objects.get(pk=goodsid)
-
+    print(5555555)
     order = Order()
 
     order.user = user
@@ -387,7 +411,7 @@ def buy_immediatly(request):
     order.identifier = generate_identifier()
 
     order.save()
-    print('5555555555555555555')
+    print('666666666666666')
 
     ordergoods = OrderGoods()
 
@@ -399,7 +423,7 @@ def buy_immediatly(request):
     print(ordergoods.number)
 
     ordergoods.save()
-    print(666666666666666)
+    print(777777777777777)
 
     return JsonResponse({'msg': 'connect success', 'status': 1})
 
@@ -418,3 +442,58 @@ def generateorder2(request):
     }
 
     return render(request, 'orderdetial.html', context=data)
+
+
+def returnurl(request):
+    return render(request,'cart.html')
+
+@csrf_exempt
+def app_notify_url(request):
+
+    if request.method=='POST':
+        body_str=request.body.decode('utf-8')
+
+        post_data=parse_qs(body_str)
+
+        post_dic={}
+        for k,v in post_data.items():
+            post_dic[k]=v[0]
+
+        out_trade_no=post_dic['out_trade_no']
+
+        Order.objects.filter(identifier=out_trade_no).update(status=1)
+
+
+    print('成功支付')
+    return JsonResponse({'msg':'success'})
+
+
+def pay(request):
+
+    orderid=request.GET.get('orderid')
+
+    order=Order.objects.get(pk=orderid)
+
+    sum=0
+    for ordergood in order.ordergoods_set.all():
+        sum+=ordergood.goods.price*ordergood.number
+
+    # 支付地址信息
+    data=alipay.direct_pay(
+        # 显示标题
+        subject='商品种类',
+        # 项目里面的商品订单号
+        out_trade_no=order.identifier,
+        # 支付金额
+        total_amount=str(sum),
+        return_url='http://47.107.183.163/returnurl/'
+
+    )
+
+    # 支付地址
+    alipay_url='https://openapi.alipaydev.com/gateway.do?{data}'.format(data=data)
+
+    print(alipay_url)
+
+
+    return JsonResponse({'msg':'调用支付接口','alipayurl':alipay_url,'status':1})

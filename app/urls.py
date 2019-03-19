@@ -36,4 +36,14 @@ urlpatterns=[
     url(r'^buy_immediatly/$',views.buy_immediatly,name='buy_immediatly'),
 
     url(r'^generateorder2/$',views.generateorder2,name='generateorder2'),
+
+    url(r'^returnurl/$',views.returnurl,name='returnurl'),
+
+    url(r'^returnurl/$',views.returnurl,name='returnurl'),
+
+    url(r'^app_notify_url/$',views.app_notify_url,name='app_notify_url'),
+
+    url(r'^pay/$',views.pay,name='pay')
+
+
 ]

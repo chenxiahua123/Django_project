@@ -1,3 +1,5 @@
+# -*- coding:UTF-8 -*-
+
 """
 Django settings for 网易考拉 project.
 
@@ -25,7 +27,7 @@ SECRET_KEY = 'svzk5gfku-cn&9y!49i+2%lojthtmhjry$m7)t3ji&n+(tti2j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = '网易考拉.urls'
+ROOT_URLCONF = 'wangyikaola.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = '网易考拉.wsgi.application'
+WSGI_APPLICATION = 'wangyikaola.wsgi.application'
 
 
 # Database
@@ -80,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'django_project',
         'USER':'root',
-        'PASSWORD':'rock1204',
+        'PASSWORD':'chen1234',
         'PORT':'3306'
     }
 }

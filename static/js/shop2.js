@@ -74,6 +74,8 @@ $(document).ready(function () {
 
         var number = $('.ctrnum_wrap input').attr('number')
 
+        console.log(number)
+
         var goodsid = $('.ctrnum_wrap input').attr('goodsid')
 
         data = {
@@ -95,11 +97,8 @@ $(document).ready(function () {
     $('.buybtns .buybtn').click(function () {
         console.log('success clicking')
 
-
-        var goodsid = $(this).attr('goodsid')
-
+        var goodsid = $('.ctrnum_wrap input').attr('goodsid')
         var number = $('.ctrnum_wrap input').attr('number')
-
         data = {
             'goodsid': goodsid,
             'number': number,

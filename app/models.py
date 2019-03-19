@@ -6,14 +6,14 @@ class Wheel(models.Model):
     img=models.CharField(max_length=100)
 
     class Meta:
-        db_table='网易考拉——轮播图'
+        db_table='wangyikaola——wheel'
 
 class Tuijian(models.Model):
     name = models.CharField(max_length=100)
     img = models.CharField(max_length=100)
 
     class Meta:
-        db_table = '网易考拉——推荐'
+        db_table = 'wangyikaola——tuijian'
 
 class User(models.Model):
     account=models.CharField(max_length=100,unique=True)
@@ -21,7 +21,7 @@ class User(models.Model):
     phone=models.CharField(max_length=100)
 
     class Meta:
-        db_table='网易考拉——注册表'
+        db_table='wangyikaola——user'
 
 class Goods(models.Model):
     name=models.CharField(max_length=100)
@@ -30,7 +30,7 @@ class Goods(models.Model):
     store_num=models.IntegerField(default=20)
 
     class Meta:
-        db_table='网易考拉——商品'
+        db_table='wangyikaola——goods'
 
 class Cart(models.Model):
     user=models.ForeignKey(User)
@@ -44,7 +44,7 @@ class Cart(models.Model):
     isdelete=models.BooleanField(default=False)
 
     class Meta:
-        db_table='网易考拉——购物车'
+        db_table='wangyikaola——cart'
 
 class Order(models.Model):
     user=models.ForeignKey(User)
@@ -58,7 +58,7 @@ class Order(models.Model):
     identifier=models.CharField(max_length=300)
 
     class Meta:
-        db_table='网易考拉——订单'
+        db_table='wangyikaola——order'
 
 class OrderGoods(models.Model):
     order=models.ForeignKey(Order)
@@ -68,5 +68,5 @@ class OrderGoods(models.Model):
     number=models.IntegerField(default=0)
 
     class Meta:
-        db_table='网易考拉——订单商品'
+        db_table='wangyikaola——ordergoods'
 
